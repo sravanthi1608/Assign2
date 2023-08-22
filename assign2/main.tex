@@ -115,10 +115,14 @@
 %\renewcommand{\theequation}{\theenumi}
 
 Question:Suppose than 90\% of people are right-handed. What is the probability that atmost 6 of a random sample of 10 people are right-handed? 
-\\ \solution:To calculate the probability of having at most 6 right-handed individuals out of a random sample of 10 people, given that the probability of an individual being right-handed is 90\% (0.9), we can use the binomial distribution formula:
+\\ \solution:Calculating Probability Using Bernoulli Distribution\\
+Given that 90\% of people are right-handed, let $ p = 0.90 $ be the probability of success (right-handedness), and $ q = 0.10 $ be the probability of failure (left-handedness).
+We want to find the probability that at most 6 out of 10 people in a random sample are right-handed.
+
 
 \begin{equation}
-P(X = k) = \binom{n}{k} \cdot p^k \cdot (1 - p)^{n - k}
+P(X = k) = \binom{n}{k} \cdot p^k \cdot q^{n - k} \\
+%P(X = k) = \binom{n}{k} \cdot p^k \cdot (1 - p)^{n - k}\\
 \end{equation}
 
 where:
@@ -128,11 +132,10 @@ k & = \text{number of successes we're interested in (at most 6)} \\
 p & = \text{probability of success (probability of a person being right-handed)} = 0.9 \\
 \binom{n}{k} & = \text{binomial coefficient} = \frac{n!}{k! \cdot (n - k)!}
 \end{align}
-
 We need to calculate the probabilities for $ k = 0, 1, 2, 3, 4, 5 $ and $6$, and then sum them up to get the probability of getting at most 6 right-handed individuals.
-Let's calculate it step by step:
-
+Let's calculate it step by step:\\
 \begin{align}
+P(X \leq 6) = \sum_{k=0}^{6} \binom{10}{k} \cdot (0.90)^k \cdot (0.10)^{10 - k}\\
 \text{For } k = 0: & \quad P(X = 0)=\binom{10}{0} \cdot (0.9)^0 \cdot (1 - 0.9)^{10 - 0} \\
                                    &=(0.1)^{10} \\
                                    &=0.0000000001\\                             

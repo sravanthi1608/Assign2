@@ -1,15 +1,17 @@
-from math import comb
+import scipy.special
 
-def binomial_probability(n, k, p):
-    return comb(n, k) * (p ** k) * ((1 - p) ** (n - k))
+def bernoulli_probability(n, k, p):
+    q = 1 - p
+    binomial_coefficient = scipy.special.comb(n, k)
+    probability = binomial_coefficient * (p ** k) * (q ** (n - k))
+    return probability
 
-p_right_handed = 0.9
-sample_size = 10
+n = 10  # Sample size
+p = 0.90  # Probability of right-handedness
+
 total_probability = 0
+for k in range(7):  # k ranges from 0 to 6 (at most 6)
+    total_probability += bernoulli_probability(n, k, p)
 
-for k in range(7):
-    probability = binomial_probability(sample_size, k, p_right_handed)
-    total_probability += probability
-
-print("Probability of having at most 6 right-handed individuals:", total_probability)
+print(f"Probability of at most 6 of a random sample of 10 people are right-handed: {total_probability:.4f}")
 
