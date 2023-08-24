@@ -1,17 +1,14 @@
-import scipy.special
+from scipy.stats import binom
 
-def bernoulli_probability(n, k, p):
-    q = 1 - p
-    binomial_coefficient = scipy.special.comb(n, k)
-    probability = binomial_coefficient * (p ** k) * (q ** (n - k))
-    return probability
+# Parameters
+n = 10  # number of trials (sample size)
+p = 0.9  # probability of success (right-handed)
+k_max = 6  # maximum number of right-handed individuals
 
-n = 10  # Sample size
-p = 0.90  # Probability of right-handedness
+# Calculate the probability using the cumulative distribution function (CDF)
+probability_at_most_6 = binom.cdf(k_max, n, p)
 
-total_probability = 0
-for k in range(7):  # k ranges from 0 to 6 (at most 6)
-    total_probability += bernoulli_probability(n, k, p)
+formatted_probability = "{:.4f}".format(probability_at_most_6)
 
-print(f"Probability of at most 6 of a random sample of 10 people are right-handed: {total_probability:.4f}")
+print("Probability that at most 6 out of 10 people are right-handed:", formatted_probability)
 
